@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UPI Shield</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/style.css">
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">UPI Shield</div>
+  <div class="nav-links">
+    <span>Dashboard</span>
+    <span>Analytics</span>
+    <span>Alerts</span>
+    <span>About</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Detect UPI Fraud in Real Time</h1>
+  <p>AI-powered transaction monitoring and fraud intelligence platform</p>
+
+  <div class="hero-search">
+    <input placeholder="Search transaction / user ID">
+    <button>Analyze</button>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="cards">
+  <div class="card">
+    <div class="label">Fraud Risk</div>
+    <div id="riskValue" class="value">0</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Alerts</div>
+    <div id="alertCount" class="value">0</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Transactions</div>
+    <div id="txCount" class="value">0</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+
+  <div id="graph"></div>
+
+  <div class="side">
+
+    <div class="panel">
+      <h3>Fraud Alerts</h3>
+      <div id="alerts"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Recent Transactions</h3>
+      <div id="history"></div>
+
+      <button id="seeMoreBtn" class="see-more">
+        See more transactions
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <h2>About UPI Shield</h2>
+  <p>
+    UPI Shield is a real-time fraud intelligence platform designed to detect
+    suspicious digital payment transactions using AI and network analytics.
+    It enables financial institutions to monitor transaction patterns,
+    identify fraud risks, and prevent financial losses instantly.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-col">
+    <h4>Company</h4>
+    <a>About Us</a>
+    <a>Careers</a>
+    <a>Blog</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Services</h4>
+    <a>Fraud Monitoring</a>
+    <a>Risk Analytics</a>
+    <a>Transaction Intelligence</a>
+  </div>
+
+  <div class="footer-col">
+    <h4>Team</h4>
+    <p>Developed by</p>
+    <span class="team-name">Team Code Blooded</span>
+  </div>
+</footer>
+
+<script src="JS/api.js"></script>
+<script src="JS/graph.js"></script>
+<script src="JS/dashboard.js"></script>
+
+</body>
+</html>
