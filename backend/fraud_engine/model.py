@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier, IsolationForest
+from sklearn.ensemble import RandomForestClassifier
 from data.dataset_loader import load_dataset
 
 class FraudModel:
@@ -38,11 +38,6 @@ class FraudModel:
             )
             self.rf_model.fit(X_train, y_train)
 
-            # Secondary Anomaly Model: Isolation Forest
-            contamination = max(0.01, min(0.15, float(y_train.mean()) if y_train.sum() > 0 else 0.04))
-            self.iso_model = IsolationForest(contamination=contamination, random_state=42)
-            self.iso_model.fit(X_train)
-
             self.feature_importances = {
                 name: round(float(imp), 4)
                 for name, imp in zip(self.feature_names, self.rf_model.feature_importances_)
@@ -79,9 +74,6 @@ class FraudModel:
                 class_weight="balanced"
             )
             self.rf_model.fit(X_train, y_train)
-
-            self.iso_model = IsolationForest(contamination=0.04, random_state=42)
-            self.iso_model.fit(X_train)
 
             self.feature_importances = {
                 name: round(float(imp), 4)
@@ -121,12 +113,6 @@ class FraudModel:
             "threshold": threshold,
             "feature_importances": getattr(self, "feature_importances", {})
         }
-
-    def anomaly_score(self, amount, freq, hour):
-        """Optional unsupervised anomaly detection from Isolation Forest."""
-        X = self._extract_features([amount], [freq], [hour])
-        raw = self.iso_model.decision_function(X)[0]
-        return round(float(1 - raw), 3)
 
     def get_info(self):
         """Model architecture and training summary."""

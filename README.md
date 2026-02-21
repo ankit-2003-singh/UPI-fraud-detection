@@ -43,7 +43,7 @@ UPI Shield utilizes a defense-in-depth approach consisting of three distinct fra
 ```
  Incoming UPI Transaction
           │
-          ├──► [1] ML Ensemble (Isolation Forest + Random Forest)
+          ├──► [1] Random Forest Machine Learning Model
           ├──► [2] Rule-Based Risk Engine (Velocity, Amount, Time)
           └──► [3] Graph Analytics (Fraud Rings & Money Mule Accounts)
           │
@@ -51,7 +51,7 @@ UPI Shield utilizes a defense-in-depth approach consisting of three distinct fra
     Blended Risk Score [0.0 - 1.0] ──► Allow (200) / Block (403)
 ```
 
-1. **Supervised Random Forest Classifier (Primary ML Engine)**:
+1. **Supervised Random Forest Classifier (Machine Learning Engine)**:
    - **Architecture**: 100 Decision Trees (`n_estimators=100`, `max_depth=8`) from Scikit-Learn.
    - **Class Balancing**: Uses `class_weight="balanced"` to effectively learn from imbalanced fraud patterns.
    - **Feature Engineering**:
@@ -61,7 +61,6 @@ UPI Shield utilizes a defense-in-depth approach consisting of three distinct fra
      - `is_night`: Binary indicator for high-risk nocturnal hours ($<5\text{am}$ or $\ge 23\text{pm}$).
      - `is_high_amount`: Binary flag for high-value risk ($> ₹25,000$).
    - **Outputs**: Direct calibrated fraud probability $[0.0 - 1.0]$ via `predict_proba`.
-   - **Secondary Anomaly Detector**: Isolation Forest running in parallel for unsupervised zero-day anomaly detection.
 
 2. **Rule-Based Heuristic Engine**:
    - Evaluates high monetary velocity (frequency $> 10$ transactions/window).
@@ -94,7 +93,7 @@ UPI Shield utilizes a defense-in-depth approach consisting of three distinct fra
 
 ### Backend
 - **Python 3.10+** / **Flask 3.0+**
-- **Scikit-Learn**: Isolation Forest, Random Forest Classifier
+- **Scikit-Learn**: Random Forest Classifier
 - **NetworkX**: Directed graph analysis, cycle detection, PageRank
 - **Pandas & NumPy**: Dataset loading, normalization, feature scaling
 - **Flask-CORS**: Cross-Origin Resource Sharing
@@ -125,7 +124,7 @@ UPI-fraud-detection/
 │   │   └── storage.py            # In-memory recent transaction store
 │   ├── fraud_engine/
 │   │   ├── graph_engine.py       # NetworkX graph, cycle detection & mule detection
-│   │   ├── model.py              # Random Forest + Isolation Forest ensemble model
+│   │   ├── model.py              # Random Forest fraud classification model
 │   │   └── risk_rules.py         # Heuristic rules (amount, velocity, time of day)
 │   ├── app.py                    # Flask server entry point
 │   └── requirements.txt          # Python dependencies
@@ -354,7 +353,6 @@ Returns the latest scored transactions stored in memory.
 
 | Metric / Model | Implementation | Purpose |
 | :--- | :--- | :--- |
-| **Isolation Forest** | `sklearn.ensemble.IsolationForest` | Identifies outliers and anomalous patterns without supervision. |
 | **Random Forest** | `sklearn.ensemble.RandomForestClassifier` | Classifies transaction patterns against known fraud labels. |
 | **Simple Cycles** | `networkx.simple_cycles` | Discovers circular fund movements indicative of money laundering. |
 | **PageRank** | `networkx.pagerank` | Measures high-traffic settlement hubs and intermediate flow. |

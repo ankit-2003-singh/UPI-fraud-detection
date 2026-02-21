@@ -73,9 +73,9 @@ export default function App() {
         <p>
           UPI Shield is a real-time fraud intelligence platform designed to
           detect suspicious digital payment transactions using AI and network
-          analytics. It uses a <strong>Random Forest + Isolation Forest ensemble</strong>,
-          graph-based <strong>fraud ring and mule account detection</strong>, and
-          a <strong>pre-transaction blocking API</strong> to stop fraud before it happens.
+          analytics. It uses a <strong>Random Forest Classifier</strong>,
+          rule-based risk analysis, graph-based <strong>fraud ring and mule account detection</strong>, and
+          a <strong>pre-transaction blocking API</strong> to stop fraud before completion.
         </p>
       </div>
 
