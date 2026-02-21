@@ -31,7 +31,7 @@ export default function KPICards({ latestTx, txCount, alertCount }) {
       <div className="card">
         <div className="label">ML Model</div>
         <div className="value" style={{ fontSize: "1.1rem", color: "#10b981", fontWeight: 600 }}>
-          Random Forest (91% Acc)
+          Random Forest
         </div>
       </div>
     </div>

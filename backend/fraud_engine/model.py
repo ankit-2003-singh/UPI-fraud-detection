@@ -122,14 +122,6 @@ class FraudModel:
             "n_estimators": 100,
             "max_depth": 8,
             "class_weight": "balanced",
-            "accuracy": "91.2%",
-            "metrics": {
-                "accuracy": 0.912,
-                "precision": 0.895,
-                "recall": 0.918,
-                "f1_score": 0.906,
-                "roc_auc": 0.946
-            },
             "feature_names": self.feature_names,
             "feature_importances": getattr(self, "feature_importances", {})
         }
