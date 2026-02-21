@@ -139,6 +139,8 @@ def register_routes(app):
                         headers={
                             "Cache-Control": "no-cache",
                             "X-Accel-Buffering": "no",
+                            "Access-Control-Allow-Origin": "*",
+                            "Access-Control-Allow-Headers": "Content-Type",
                         })
 
     # ── /api/history  ── retrieve recent transactions ─────────────────────
