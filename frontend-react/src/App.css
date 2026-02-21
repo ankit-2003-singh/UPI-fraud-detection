@@ -1,0 +1,221 @@
+/* ── Base reset & theme ─────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: "Inter", sans-serif;
+}
+
+.app { min-height: 100vh; }
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+.logo { font-size: 1.4rem; font-weight: 700; color: #38bdf8; }
+.nav-links { display: flex; gap: 24px; cursor: pointer; }
+.nav-links span { color: #94a3b8; transition: color .2s; }
+.nav-links span:hover { color: #e2e8f0; }
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+.hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; }
+.hero p  { color: #94a3b8; font-size: 1.05rem; margin-bottom: 24px; }
+
+.hero-search {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.hero-search input {
+  width: 340px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+.hero-search button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: #38bdf8;
+  border: none;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+}
+.hero-search button:hover { background: #7dd3fc; }
+
+/* ── KPI Cards ──────────────────────────────────────────────── */
+.cards {
+  display: flex;
+  gap: 16px;
+  padding: 24px 32px;
+  flex-wrap: wrap;
+}
+.card {
+  flex: 1;
+  min-width: 160px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.card .label { color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px; }
+.card .value { font-size: 2rem; font-weight: 700; }
+
+/* ── Risk colours ───────────────────────────────────────────── */
+.risk-high { color: #ef4444; }
+.risk-mid  { color: #f59e0b; }
+.risk-low  { color: #22c55e; }
+
+/* ── Dashboard grid ─────────────────────────────────────────── */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 16px;
+  padding: 0 32px 24px;
+}
+@media (max-width: 900px) {
+  .dashboard { grid-template-columns: 1fr; }
+}
+
+#graph { width: 100%; height: 400px; background: #1e293b; border-radius: 12px; }
+
+.side { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── Panels ─────────────────────────────────────────────────── */
+.panel {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px;
+}
+.panel h3 { font-size: 1rem; margin-bottom: 12px; color: #e2e8f0; }
+
+/* ── Alerts ─────────────────────────────────────────────────── */
+.alert {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: rgba(239,68,68,.12);
+  border-left: 3px solid #ef4444;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+.ring-alert  { background: rgba(56,189,248,.1);  border-color: #38bdf8; }
+.mule-alert  { background: rgba(245,158,11,.1);  border-color: #f59e0b; }
+.no-alert    { color: #64748b; font-size: 0.85rem; }
+
+/* ── Transaction rows ───────────────────────────────────────── */
+.tx {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.tx.risk-high { background: rgba(239,68,68,.12); border-left: 3px solid #ef4444; }
+.tx.risk-mid  { background: rgba(245,158,11,.12); border-left: 3px solid #f59e0b; }
+.tx.risk-low  { background: rgba(34,197,94,.08);  border-left: 3px solid #22c55e; }
+.tx-risk      { color: #94a3b8; font-size: 0.8rem; }
+
+.see-more {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  background: #334155;
+  border: none;
+  border-radius: 8px;
+  color: #e2e8f0;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.see-more:hover { background: #475569; }
+
+/* ── Fraud Intelligence section ─────────────────────────────── */
+.intelligence-section { padding: 0 32px 32px; }
+.section-title { margin-bottom: 16px; font-size: 1.3rem; }
+.intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ── Pre-Tx Checker ─────────────────────────────────────────── */
+.pre-tx-panel .sub-label { color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }
+
+.pre-tx-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pre-tx-form input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+.pre-tx-form button {
+  padding: 10px;
+  border-radius: 8px;
+  background: #38bdf8;
+  border: none;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.pre-tx-form button:disabled { opacity: .6; cursor: not-allowed; }
+
+.pre-tx-result {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.pre-tx-result.allowed { background: rgba(34,197,94,.12); border-left: 3px solid #22c55e; }
+.pre-tx-result.blocked { background: rgba(239,68,68,.12);  border-left: 3px solid #ef4444; }
+.result-badge { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+
+.error-msg { color: #ef4444; font-size: 0.85rem; margin-top: 8px; }
+
+/* ── About ──────────────────────────────────────────────────── */
+.about {
+  padding: 48px 32px;
+  background: #1e293b;
+  text-align: center;
+  border-top: 1px solid #334155;
+}
+.about h2 { margin-bottom: 16px; }
+.about p  { color: #94a3b8; max-width: 680px; margin: auto; line-height: 1.7; }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px 32px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  gap: 24px;
+}
+.footer-col { display: flex; flex-direction: column; gap: 8px; }
+.footer-col h4 { color: #38bdf8; margin-bottom: 4px; }
+.footer-col a  { color: #94a3b8; text-decoration: none; cursor: pointer; }
+.footer-col a:hover { color: #e2e8f0; }
+.team-name { color: #38bdf8; font-weight: 600; }
