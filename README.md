@@ -51,11 +51,17 @@ UPI Shield utilizes a defense-in-depth approach consisting of three distinct fra
     Blended Risk Score [0.0 - 1.0] ──► Allow (200) / Block (403)
 ```
 
-1. **Ensemble Machine Learning Engine**:
-   - **Isolation Forest** (Unsupervised): Identifies zero-day transaction anomalies without requiring prior labels.
-   - **Random Forest Classifier** (Supervised): Trained with balanced class weights on Kaggle UPI / PaySim transaction datasets to catch known fraudulent signatures.
-   - **Blended Scoring**: Combines supervised and unsupervised predictions:
-     $$\text{ML Score} = 0.4 \times \text{IsolationScore} + 0.6 \times \text{RandomForestScore}$$
+1. **Supervised Random Forest Classifier (Primary ML Engine)**:
+   - **Architecture**: 100 Decision Trees (`n_estimators=100`, `max_depth=8`) from Scikit-Learn.
+   - **Class Balancing**: Uses `class_weight="balanced"` to effectively learn from imbalanced fraud patterns.
+   - **Feature Engineering**:
+     - `amount`: Normalized transaction amount.
+     - `freq`: Transaction velocity/frequency within the active window.
+     - `hour`: Time of day (0–23).
+     - `is_night`: Binary indicator for high-risk nocturnal hours ($<5\text{am}$ or $\ge 23\text{pm}$).
+     - `is_high_amount`: Binary flag for high-value risk ($> ₹25,000$).
+   - **Outputs**: Direct calibrated fraud probability $[0.0 - 1.0]$ via `predict_proba`.
+   - **Secondary Anomaly Detector**: Isolation Forest running in parallel for unsupervised zero-day anomaly detection.
 
 2. **Rule-Based Heuristic Engine**:
    - Evaluates high monetary velocity (frequency $> 10$ transactions/window).

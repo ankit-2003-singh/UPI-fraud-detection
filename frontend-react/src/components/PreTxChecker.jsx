@@ -62,7 +62,8 @@ export default function PreTxChecker() {
           <div className="result-badge">
             {result.allowed ? "✅ ALLOWED" : "🚫 BLOCKED"}
           </div>
-          <div>Risk Score: <strong>{result.risk}</strong></div>
+          <div>Model: <strong>{result.model || "Random Forest Classifier"}</strong></div>
+          <div>Risk Score: <strong>{result.risk}</strong> (RF Score: {result.rf_score ?? result.ml_score})</div>
           <div>Reason: {result.reason}</div>
           {result.involves_mule && <div>⚠️ Party is a flagged mule account</div>}
           {result.involves_ring && <div>⚠️ Party is in a detected fraud ring</div>}

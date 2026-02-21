@@ -94,7 +94,8 @@ def register_routes(app):
             "allowed":       not blocked,
             "risk":          risk,
             "ml_score":      ml_score,
-            "rule_score":    rule_score,
+            "rf_score":      ml_score,
+            "model":         "Random Forest Classifier",
             "reason":        "; ".join(reasons) if blocked else "Transaction appears safe",
             "involves_mule": involves_mule,
             "involves_ring": involves_ring,
@@ -154,3 +155,8 @@ def register_routes(app):
             "fraud_rings":   graph_engine.detect_fraud_rings(),
             "mule_accounts": graph_engine.detect_mules(),
         })
+
+    # ── /api/model  ── retrieve Random Forest model info ──────────────────
+    @app.route("/api/model")
+    def model_info():
+        return jsonify(fraud_model.get_info())
